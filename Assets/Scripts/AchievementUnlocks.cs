@@ -24,7 +24,7 @@ public class AchievementUnlocks : MonoBehaviour
         {
             if(playerScript.cherries >= cherryGoal)
             {
-                cherryTrophies[cherryGoal/10].SetActive(true);
+                cherryTrophies[cherryGoal/10 - 1].SetActive(true);
                 cherryGoal += 10;
             }
         }
@@ -32,7 +32,7 @@ public class AchievementUnlocks : MonoBehaviour
         {
             if(playerScript.oranges >= orangeGoal)
             {
-                orangeTrophies[orangeGoal/10].SetActive(true);
+                orangeTrophies[orangeGoal/10 - 1].SetActive(true);
                 orangeGoal += 10;
             }
         }
@@ -40,7 +40,7 @@ public class AchievementUnlocks : MonoBehaviour
         {
             if(playerScript.apples >= appleGoal)
             {
-                appleTrophies[appleGoal/10].SetActive(true);
+                appleTrophies[appleGoal/10 - 1].SetActive(true);
                 appleGoal += 10;
             }
         }
