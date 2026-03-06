@@ -22,7 +22,10 @@ public class GeneratorFunct : MonoBehaviour
     void Start()
     {
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
+<<<<<<< Updated upstream
         upgradeCost = generatorType * 10;
+=======
+>>>>>>> Stashed changes
         upgradeCost = generatorType * numGenerated * 5;
         switch (fruit)
         {
