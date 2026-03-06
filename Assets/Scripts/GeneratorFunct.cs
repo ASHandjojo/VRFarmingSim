@@ -13,7 +13,7 @@ public class GeneratorFunct : MonoBehaviour
     [SerializeField] public int generatorType;
     public fruitType fruit;
     //amount of time before resource is incremented
-    int timeStep = 30;
+    int timeStep = 1;
     [SerializeField] TextMeshProUGUI myTextMesh; 
     [SerializeField] int numGenerated = 1;
     float ticker = 0;
