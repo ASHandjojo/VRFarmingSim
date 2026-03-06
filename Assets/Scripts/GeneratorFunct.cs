@@ -13,7 +13,7 @@ public class GeneratorFunct : MonoBehaviour
     [SerializeField] public int generatorType;
     public fruitType fruit;
     //amount of time before resource is incremented
-    int timeStep = 30;
+    int timeStep = 1;
     [SerializeField] TextMeshProUGUI myTextMesh; 
     [SerializeField] int numGenerated = 1;
     float ticker = 0;
@@ -24,7 +24,6 @@ public class GeneratorFunct : MonoBehaviour
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
 <<<<<<< Updated upstream
         upgradeCost = generatorType * 10;
-=======
         upgradeCost = generatorType * numGenerated * 5;
         switch (fruit)
         {
@@ -40,7 +39,6 @@ public class GeneratorFunct : MonoBehaviour
 
                 break;
         }
->>>>>>> Stashed changes
     }
     // Update is called once per frame
     void Update()
@@ -98,21 +96,26 @@ public class GeneratorFunct : MonoBehaviour
         {
             numGenerated += 2;
             upgradeCost *= 2;
-        }
-        switch (fruit)
-        {
-            case fruitType.cherries:
-                myTextMesh.text = "Cost: " + upgradeCost + " cherries";
-                break;
-            case fruitType.oranges:
-                myTextMesh.text = "Cost: " + upgradeCost + " oranges";
-                break;
-            case fruitType.apples:
-                if(playerScript.apples > upgradeCost)
-                myTextMesh.text = "Cost: " + upgradeCost + " apples";
+            switch (fruit)
+            {
+                case fruitType.cherries:
+                    myTextMesh.text = "Cost: " + upgradeCost + " cherries";
+                    break;
+                case fruitType.oranges:
+                    myTextMesh.text = "Cost: " + upgradeCost + " oranges";
+                    break;
+                case fruitType.apples:
+                    if(playerScript.apples > upgradeCost)
+                    myTextMesh.text = "Cost: " + upgradeCost + " apples";
 
-                break;
+                    break;
+            }
         }
+        else
+        {
+            myTextMesh.text += "not enough fruits :(";
+        }
+        
         return;
     }
 }
