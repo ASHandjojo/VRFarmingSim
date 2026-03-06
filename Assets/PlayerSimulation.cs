@@ -22,35 +22,6 @@ public class PlayerSimulation : MonoBehaviour
 
     void Update()
     {
-        float dt = Time.deltaTime;
-
-        cherries += cherryRate * dt;
-
-        if (!hasOrangeGenerator && cherries >= orangeCostInCherries)
-        {
-            hasOrangeGenerator = true;
-            cherries -= orangeCostInCherries;
-            orangeRate = 2.0f; // Set the speed
-            Debug.Log("Oranges Auto-Unlocked!");
-        }
-
-        if (!hasAppleGenerator && oranges >= appleCostInOranges)
-        {
-            hasAppleGenerator = true;
-            oranges -= appleCostInOranges;
-            appleRate = 5.0f; // Set the speed
-            Debug.Log("Apples Auto-Unlocked!");
-        }
-
-        if (hasOrangeGenerator)
-        {
-            oranges += orangeRate * dt;
-        }
-
-        if (hasAppleGenerator)
-        {
-            apples += appleRate * dt;
-        }
     }
 
     /*(public void UnlockOrangeGenerator()
