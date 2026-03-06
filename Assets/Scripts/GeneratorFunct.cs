@@ -22,7 +22,25 @@ public class GeneratorFunct : MonoBehaviour
     void Start()
     {
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
+<<<<<<< Updated upstream
         upgradeCost = generatorType * 10;
+=======
+        upgradeCost = generatorType * numGenerated * 5;
+        switch (fruit)
+        {
+            case fruitType.cherries:
+                myTextMesh.text = "Cost: " + upgradeCost + " cherries";
+                break;
+            case fruitType.oranges:
+                myTextMesh.text = "Cost: " + upgradeCost + " oranges";
+                break;
+            case fruitType.apples:
+                if(playerScript.apples > upgradeCost)
+                myTextMesh.text = "Cost: " + upgradeCost + " apples";
+
+                break;
+        }
+>>>>>>> Stashed changes
     }
     // Update is called once per frame
     void Update()
