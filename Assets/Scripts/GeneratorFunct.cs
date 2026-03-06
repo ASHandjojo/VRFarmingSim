@@ -22,7 +22,7 @@ public class GeneratorFunct : MonoBehaviour
     void Start()
     {
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
-        upgradeCost = generatorType * 10;
+        upgradeCost = generatorType * numGenerated * 5;
         switch (fruit)
         {
             case fruitType.cherries:
