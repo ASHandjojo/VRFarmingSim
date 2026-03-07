@@ -24,13 +24,13 @@ public class PlayerSimulation : MonoBehaviour
     {
     }
 
-    /*(public void UnlockOrangeGenerator()
+    public void UnlockOrangeGenerator()
     {
         if (!hasOrangeGenerator && cherries >= orangeCostInCherries)
         {
-            cherries -= orangeCostInCherries; 
+            cherries -= orangeCostInCherries;
             hasOrangeGenerator = true;
-            orangeRate = 2.0f; 
+            orangeRate = 2.0f;
             Debug.Log("Orange Generator Unlocked!");
         }
     }
@@ -39,10 +39,10 @@ public class PlayerSimulation : MonoBehaviour
     {
         if (!hasAppleGenerator && oranges >= appleCostInOranges)
         {
-            oranges -= appleCostInOranges; 
+            oranges -= appleCostInOranges;
             hasAppleGenerator = true;
-            appleRate = 5.0f; 
+            appleRate = 5.0f;
             Debug.Log("Apple Generator Unlocked!");
         }
-    }*/
+    }
 }
