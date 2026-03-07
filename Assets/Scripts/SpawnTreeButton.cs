@@ -2,24 +2,33 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 
-enum generatorType
-{
-    lower = 1, higher = 2
-};
 public class SpawnTreeButton : MonoBehaviour
 {
     [SerializeField] fruitType fruit;
-    [SerializeField] generatorType generatorLvl;
+    [SerializeField] int generatorLvl;
     PlayerSimulation playerScript;
     [SerializeField] TextMeshProUGUI myTextMesh;
     [SerializeField] Vector3 nextSpawnLoc;
     [SerializeField] GameObject generatorToSpawn;
-    [SerializeField] int upgradeCost = 10;
-    [SerializeField] int SpawnOffset = 10;
+    int upgradeCost;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        upgradeCost = generatorLvl * 2;
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
+        switch (fruit)
+            {
+                case fruitType.cherries:
+                    myTextMesh.text = "Cost: " + upgradeCost + " cherries";
+                    break;
+                case fruitType.oranges:
+                    myTextMesh.text = "Cost: " + upgradeCost + " oranges";
+                    break;
+                case fruitType.apples:
+                    myTextMesh.text = "Cost: " + upgradeCost + " apples";
+                    break;
+            }
+        
     }
 
     // Update is called once per frame
@@ -66,11 +75,11 @@ public class SpawnTreeButton : MonoBehaviour
                     myTextMesh.text = "Cost: " + upgradeCost + " apples";
                     break;
             }
-            nextSpawnLoc.x += SpawnOffset; 
+            nextSpawnLoc.z -= 15; 
         }
         else
         {
-            myTextMesh.text += "not enough fruits :(";
+            myTextMesh.text += " not enough fruits :(";
         }
     }
 }
