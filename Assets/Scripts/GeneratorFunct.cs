@@ -103,7 +103,6 @@ public class GeneratorFunct : MonoBehaviour
                     myTextMesh.text = "Cost: " + upgradeCost + " oranges";
                     break;
                 case fruitType.apples:
-                    if(playerScript.apples > upgradeCost)
                     myTextMesh.text = "Cost: " + upgradeCost + " apples";
 
                     break;
