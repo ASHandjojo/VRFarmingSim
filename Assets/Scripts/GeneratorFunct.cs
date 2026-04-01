@@ -19,6 +19,7 @@ public class GeneratorFunct : MonoBehaviour
     float ticker = 0;
     PlayerSimulation playerScript;
     int upgradeCost;
+    [SerializeField] ParticleSystem fruitParticles;
     void Start()
     {
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
@@ -44,6 +45,12 @@ public class GeneratorFunct : MonoBehaviour
         ticker += Time.deltaTime;
         if(ticker >= timeStep)
         {
+            // emit particles
+            if (fruitParticles != null)
+            {
+                int burstAmount = Mathf.Min(numGenerated * generatorType, 50); // Cap at 50 particles
+                fruitParticles.Emit(burstAmount);
+            }
             //increment function on the resource
             switch (fruit)
             {
