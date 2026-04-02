@@ -15,15 +15,15 @@ public class FOVRestrict : MonoBehaviour
         if(cc.velocity.magnitude != 0)
         {
             print("decreasing FOV");
-            if(Camera.main.fieldOfView > 40f){
+            if(Camera.main.fieldOfView > 50f){
                 print("decreasing FOV");
-                Camera.main.fieldOfView -= .2f*(Camera.main.fieldOfView - 40f);
+                Camera.main.fieldOfView -= .02f*(Camera.main.fieldOfView - 50f);
             }
         }
         else
         {
             if(Camera.main.fieldOfView < 60f){
-                Camera.main.fieldOfView += .2f*(60F - Camera.main.fieldOfView);
+                Camera.main.fieldOfView += .02f*(60F - Camera.main.fieldOfView);
             }
         }
         
