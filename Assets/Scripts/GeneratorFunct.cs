@@ -20,10 +20,14 @@ public class GeneratorFunct : MonoBehaviour
     PlayerSimulation playerScript;
     int upgradeCost;
     [SerializeField] ParticleSystem fruitParticles;
+    float visualCostDisplay; // This is 'x' (the needle on the speedometer)
+    [SerializeField] float k_UI = 4f; // This is 'k' (the speed/stiffness)
+    
     void Start()
     {
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
         upgradeCost = generatorType * numGenerated * 5;
+        visualCostDisplay = upgradeCost;
         switch (fruit)
         {
             case fruitType.cherries:
@@ -33,8 +37,8 @@ public class GeneratorFunct : MonoBehaviour
                 myTextMesh.text = "Cost: " + upgradeCost + " oranges";
                 break;
             case fruitType.apples:
-                if(playerScript.apples > upgradeCost)
-                myTextMesh.text = "Cost: " + upgradeCost + " apples";
+                if (playerScript.apples > upgradeCost)
+                    myTextMesh.text = "Cost: " + upgradeCost + " apples";
 
                 break;
         }
@@ -42,6 +46,14 @@ public class GeneratorFunct : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // juicy cost animation
+        // v = k * (goal - x) * Time.deltaTime
+        float velocity = k_UI * (upgradeCost - visualCostDisplay) * Time.deltaTime;
+        visualCostDisplay += velocity;
+
+        // juicy feedback
+        myTextMesh.text = "Cost: " + (int)visualCostDisplay + " " + fruit.ToString();
+
         ticker += Time.deltaTime;
         if(ticker >= timeStep)
         {
@@ -72,7 +84,7 @@ public class GeneratorFunct : MonoBehaviour
     }
     public void Upgrade()
     {
-                bool canBuy = false;
+        bool canBuy = false;
         switch (fruit)
         {
             case fruitType.cherries:
@@ -101,7 +113,7 @@ public class GeneratorFunct : MonoBehaviour
         {
             numGenerated += 2;
             upgradeCost *= 2;
-            switch (fruit)
+            /*switch (fruit)
             {
                 case fruitType.cherries:
                     myTextMesh.text = "Cost: " + upgradeCost + " cherries";
@@ -113,7 +125,7 @@ public class GeneratorFunct : MonoBehaviour
                     myTextMesh.text = "Cost: " + upgradeCost + " apples";
 
                     break;
-            }
+            }*/
         }
         else
         {
