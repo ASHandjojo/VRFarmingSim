@@ -1,4 +1,8 @@
 ﻿<Solution>
+<<<<<<< Updated upstream
+=======
+  <Project Path="Assembly-CSharp.csproj" />
+>>>>>>> Stashed changes
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.InteractionSimulator.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator.csproj" />
   <Project Path="ControllerSample.csproj" />
