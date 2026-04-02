@@ -19,7 +19,14 @@ public class GeneratorFunct : MonoBehaviour
     float ticker = 0;
     PlayerSimulation playerScript;
     int upgradeCost;
+    // for particles for ramping resources
     [SerializeField] ParticleSystem fruitParticles;
+    // for eases for planting generators
+    [SerializeField] Transform generatorVisual; 
+    [SerializeField] float k_Ease = 5.0f;       
+    float visualHeight = 1.0f;                 
+    float targetHeight = 1.0f;                
+    // for exponential costs
     float visualCostDisplay; // This is 'x' (the needle on the speedometer)
     [SerializeField] float k_UI = 4f; // This is 'k' (the speed/stiffness)
     
@@ -28,6 +35,8 @@ public class GeneratorFunct : MonoBehaviour
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
         upgradeCost = generatorType * numGenerated * 5;
         visualCostDisplay = upgradeCost;
+        visualHeight = numGenerated; 
+        targetHeight = numGenerated;
         switch (fruit)
         {
             case fruitType.cherries:
@@ -53,6 +62,15 @@ public class GeneratorFunct : MonoBehaviour
 
         // juicy feedback
         myTextMesh.text = "Cost: " + (int)visualCostDisplay + " " + fruit.ToString();
+
+        float heightVelocity = k_Ease * (targetHeight - visualHeight) * Time.deltaTime;
+        visualHeight += heightVelocity;
+
+        if (generatorVisual != null)
+        {
+            // This physically scales the object based on the "eased" height
+            generatorVisual.localScale = new Vector3(1, visualHeight, 1);
+        }
 
         ticker += Time.deltaTime;
         if(ticker >= timeStep)
@@ -126,6 +144,7 @@ public class GeneratorFunct : MonoBehaviour
 
                     break;
             }*/
+            targetHeight = numGenerated;
         }
         else
         {
