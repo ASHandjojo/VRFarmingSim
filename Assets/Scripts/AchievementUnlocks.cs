@@ -10,11 +10,13 @@ public class AchievementUnlocks : MonoBehaviour
 
     [SerializeField] GameObject[] orangeTrophies;
     [SerializeField] GameObject[] appleTrophies;
+    AudioSource audioSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class AchievementUnlocks : MonoBehaviour
         {
             if(playerScript.cherries >= cherryGoal)
             {
+                audioSource.Play();
                 cherryTrophies[cherryGoal/10 - 1].SetActive(true);
                 cherryGoal += 10;
             }
@@ -32,6 +35,7 @@ public class AchievementUnlocks : MonoBehaviour
         {
             if(playerScript.oranges >= orangeGoal)
             {
+                audioSource.Play();
                 orangeTrophies[orangeGoal/10 - 1].SetActive(true);
                 orangeGoal += 10;
             }
@@ -40,6 +44,7 @@ public class AchievementUnlocks : MonoBehaviour
         {
             if(playerScript.apples >= appleGoal)
             {
+                audioSource.Play();
                 appleTrophies[appleGoal/10 - 1].SetActive(true);
                 appleGoal += 10;
             }
