@@ -21,22 +21,18 @@ public class GeneratorFunct : MonoBehaviour
     int upgradeCost;
     // for particles for ramping resources
     [SerializeField] ParticleSystem fruitParticles;
-    // for eases for planting generators
-    [SerializeField] Transform generatorVisual; 
-    [SerializeField] float k_Ease = 5.0f;       
-    float visualHeight = 1.0f;                 
-    float targetHeight = 1.0f;                
+    // for eases for planting generators    
+    [SerializeField] float k_Ease = 4f;
+    float visualScale = 0f;
+    float targetScale = 4f;                               
     // for exponential costs
-    float visualCostDisplay; // This is 'x' (the needle on the speedometer)
-    [SerializeField] float k_UI = 4f; // This is 'k' (the speed/stiffness)
+    float visualCostDisplay;
+    [SerializeField] float k_UI = 2f;
     
     void Start()
     {
         playerScript = (GameObject.Find("PlayerSimulation")).GetComponent<PlayerSimulation>();
         upgradeCost = generatorType * numGenerated * 5;
-        visualCostDisplay = upgradeCost;
-        visualHeight = numGenerated; 
-        targetHeight = numGenerated;
         switch (fruit)
         {
             case fruitType.cherries:
@@ -55,31 +51,22 @@ public class GeneratorFunct : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // juicy cost animation
-        // v = k * (goal - x) * Time.deltaTime
-        float velocity = k_UI * (upgradeCost - visualCostDisplay) * Time.deltaTime;
-        visualCostDisplay += velocity;
-
-        // juicy feedback
+        // ease visualCostDisplay toward the real upgradeCost
+        visualCostDisplay += k_UI * (upgradeCost - visualCostDisplay) * Time.deltaTime;
         myTextMesh.text = "Cost: " + (int)visualCostDisplay + " " + fruit.ToString();
-
-        float heightVelocity = k_Ease * (targetHeight - visualHeight) * Time.deltaTime;
-        visualHeight += heightVelocity;
-
-        if (generatorVisual != null)
-        {
-            // This physically scales the object based on the "eased" height
-            generatorVisual.localScale = new Vector3(1, visualHeight, 1);
-        }
-
         ticker += Time.deltaTime;
+
+        // ease generator
+        visualScale += k_Ease * (targetScale - visualScale) * Time.deltaTime;
+        transform.localScale = new Vector3(visualScale, visualScale, visualScale);
+
         if(ticker >= timeStep)
         {
             // emit particles
             if (fruitParticles != null)
             {
-                int burstAmount = Mathf.Min(numGenerated * generatorType, 50); // Cap at 50 particles
-                fruitParticles.Emit(burstAmount);
+                // int burstAmount = Mathf.Min(numGenerated * generatorType, 50); // Cap at 50 particles
+                fruitParticles.Emit(numGenerated * generatorType);
             }
             //increment function on the resource
             switch (fruit)
@@ -144,7 +131,6 @@ public class GeneratorFunct : MonoBehaviour
 
                     break;
             }*/
-            targetHeight = numGenerated;
         }
         else
         {
