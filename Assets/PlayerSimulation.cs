@@ -6,6 +6,8 @@ public class PlayerSimulation : MonoBehaviour
     public float cherries = 0f;
     public float oranges = 0f;
     public float apples = 0f;
+    public float grapes = 0f;
+    public float dragonfruit = 0f;
 
     [Header("Production Rates")]
     public float cherryRate = 1.0f; 
