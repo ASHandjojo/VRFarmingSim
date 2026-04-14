@@ -9,8 +9,10 @@ public class UnlockNextFruit : MonoBehaviour
     [SerializeField] GameObject counter;
     [SerializeField] GameObject tree;
     [SerializeField] GameObject shop;
+    AudioSource audioSource;
     bool bought = false;
     int upgradeCost = 50;
+    ParticleSystem particleSystem;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,6 +26,7 @@ public class UnlockNextFruit : MonoBehaviour
                     myTextMesh.text = "Cost: " + upgradeCost + " oranges";
                     break;
             }
+        audioSource = GetComponent<AudioSource>();
         
     }
 
@@ -52,6 +55,7 @@ public class UnlockNextFruit : MonoBehaviour
             }
             if (canBuy)
             {
+                audioSource.Play();
                 counter.SetActive(true);
                 shop.SetActive(true);
                 tree.SetActive(true);

@@ -7,6 +7,8 @@ public enum fruitType
     cherries = 1,
     oranges = 2,
     apples = 3,
+    grapes = 3,
+    dragonfruit = 4,
 }
 public class GeneratorFunct : MonoBehaviour
 {
