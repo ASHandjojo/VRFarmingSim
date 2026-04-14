@@ -12,7 +12,6 @@ public class UnlockNextFruit : MonoBehaviour
     AudioSource audioSource;
     bool bought = false;
     int upgradeCost = 50;
-    ParticleSystem particleSystem;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

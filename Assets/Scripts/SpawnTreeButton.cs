@@ -63,6 +63,10 @@ public class SpawnTreeButton : MonoBehaviour
         {
             upgradeCost *= upgradeCost;
             Instantiate(generatorToSpawn, nextSpawnLoc, Quaternion.identity);
+            if(generatorLvl == 2)
+            {
+                
+            }
             switch (fruit)
             {
                 case fruitType.cherries:
